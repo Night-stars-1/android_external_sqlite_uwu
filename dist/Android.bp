@@ -346,3 +346,14 @@ release_package_libsqlite3_noicu_library_shell_config {
     device_supported: false,
     host_supported: true,
 }
+
+// BEGIN recovery-crypto Android 17 SQLite (unlock-only backend)
+cc_library_static {
+    name: "librecovery_crypto_sqlite",
+    defaults: ["sqlite-minimal-defaults", "release_package_libsqlite3_library_defaults"],
+    recovery_available: true,
+    host_supported: true,
+    cflags: ["-DSQLITE_OMIT_LOAD_EXTENSION", "-DSQLITE_TEMP_STORE=3"],
+    visibility: ["//visibility:public"],
+}
+// END recovery-crypto Android 17 SQLite
